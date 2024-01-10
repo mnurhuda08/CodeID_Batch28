@@ -53,6 +53,7 @@ namespace Day05.tugas.Implemetation
                 Region = "CA",
                 PostalCode = "12345",
                 Country = "USA",
+                HomePhone = "+231276213",
                 Extension = 1234,
                 PhotoPath = "john_smith.png",
                 ReportTo = null
@@ -71,6 +72,7 @@ namespace Day05.tugas.Implemetation
                 Region = "CA",
                 PostalCode = "12345",
                 Country = "USA",
+                HomePhone = "+231276213",
                 Extension = 4567,
                 PhotoPath = "jane_doe.png",
                 ReportTo = 1
