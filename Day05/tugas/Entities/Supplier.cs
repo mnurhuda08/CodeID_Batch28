@@ -10,15 +10,22 @@ namespace Day05.tugas.Entities
     public class Supplier : AbsAddress
     {
         private int supplierID;
-        private string companyName;
-        private string contactName;
-        private string contactTitle;
-        private string phone;
+        private string? companyName;
+        private string? contactName;
+        private string? contactTitle;
+        private string? phone;
         private string? fax;
         private string? homePage;
 
-        public Supplier(string address, string city, string region, string postalCode, string country) : base(address, city, region, postalCode, country)
+        public Supplier(int supplierID, string? companyName, string? contactName, string? contactTitle, string address, string city, string region, string postalCode, string country, string? phone, string? fax, string? homePage) : base(address, city, region, postalCode, country)
         {
+            this.supplierID = supplierID;
+            this.companyName = companyName;
+            this.contactName = contactName;
+            this.contactTitle = contactTitle;
+            this.phone = phone;
+            this.fax = fax;
+            this.homePage = homePage;
             this.supplierID = supplierID;
             this.companyName = companyName;
             this.contactName = contactName;

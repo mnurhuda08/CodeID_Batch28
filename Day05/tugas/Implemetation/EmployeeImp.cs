@@ -39,44 +39,9 @@ namespace Day05.tugas.Implemetation
         public List<Employee> InitListData()
         {
             List<Employee> employees = new List<Employee>();
-            Employee emp1 = new Employee
-            {
-                EmployeeID = 1,
-                FirstName = "Doe",
-                LastName = "John",
-                Title = "Sales Manager",
-                TitleOfCourtesy = "Mr.",
-                BirthDate = new DateTime(1980, 10, 5),
-                HireDate = new DateTime(2005, 3, 15),
-                Address = "1234 Main St",
-                City = "Anytown",
-                Region = "CA",
-                PostalCode = "12345",
-                Country = "USA",
-                HomePhone = "+231276213",
-                Extension = 1234,
-                PhotoPath = "john_smith.png",
-                ReportTo = null
-            };
-            Employee emp2 = new Employee
-            {
-                EmployeeID = 2,
-                FirstName = "John",
-                LastName = "Doe",
-                Title = "Salesperson",
-                TitleOfCourtesy = "Ms.",
-                BirthDate = new DateTime(1990, 11, 12),
-                HireDate = new DateTime(2015, 6, 1),
-                Address = "1234 Oak Ave",
-                City = "Anytown",
-                Region = "CA",
-                PostalCode = "12345",
-                Country = "USA",
-                HomePhone = "+231276213",
-                Extension = 4567,
-                PhotoPath = "jane_doe.png",
-                ReportTo = 1
-            };
+            Employee emp1 = new Employee(3, "Ahmad", "Solihul", "Sales", "Mr.", new DateTime(1998, 7, 12), new DateTime(2024, 1, 10), "Jl Kaliurang", "Sleman", "DIY", "56281", "Indonesia", "+26762135921", 3214, "ad_biru.png", "Nothingness", null, "ad_biru.png");
+
+            Employee emp2 = new Employee(3, "Rahmad", "Darma", "Admin", "Mr.", new DateTime(1998, 5, 12), new DateTime(2024, 1, 10), "Jl Gebang", "Bantul", "DIY", "56281", "Indonesia", " + 26762135921", 3214, "rd_biru.png", "Nothingness", null, "rd_biru.png");
 
             Save(employees, emp1);
             Save(employees, emp2);

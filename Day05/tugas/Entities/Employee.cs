@@ -10,16 +10,16 @@ namespace Day05.tugas.Entities
     public class Employee : AbsAddress
     {
         private int employeeID;
-        private string firstName;
-        private string lastName;
-        private string title;
-        private string titleOfCourtesy;
-        private DateTime birthDate;
-        private DateTime hireDate;
-        private string homePhone;
-        private int extension;
+        private string? firstName;
+        private string? lastName;
+        private string? title;
+        private string? titleOfCourtesy;
+        private DateTime? birthDate;
+        private DateTime? hireDate;
+        private string? homePhone;
+        private int? extension;
         private string? photo;
-        private string notes;
+        private string? notes;
         private int? reportTo;
         private string? photoPath;
 

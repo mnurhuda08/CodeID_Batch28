@@ -37,35 +37,14 @@ namespace Day05.tugas.Implemetation
         public List<Customer> InitListData()
         {
             List<Customer> customers = new List<Customer>();
-            Customer cust1 = new Customer
-            {
-                CustomerID = 1,
-                CompanyName = "Acme Corp",
-                ContactName = "John Doe",
-                ContactTitle = "Sales Manager",
-                Address = "123 Main St",
-                City = "Anytown",
-                Region = "CA",
-                PostalCode = "12345",
-                Country = "USA",
-                Phone = "(555) 123-4567",
-                Fax = "(555) 123-4568"
-            };
-            Customer cust2 = new Customer
-            {
-                CustomerID = 2,
-                CompanyName = "ABC Ltd",
-                ContactName = "Jane Smith",
-                ContactTitle = "Marketing Manager",
-                Address = "456 Oak Rd",
-                City = "Anytown",
-                Region = "CA",
-                PostalCode = "12345",
-                Country = "USA",
-                Phone = "(555) 987-6543",
-            };
+            Customer cust1 = new Customer(1, "Acme Corp", "John Doe", "Sales Manager", "123 Main St", "Anytown", "CA", "12345", "USA", "(555)123-4567", "(555) 123-4568"
+            );
+
+            Customer cust2 = new Customer(2, "ABC Ltd", "Jane Smith", "Marketing Manager", "456 Oak Rd", "Anytown", "CA", "12345", "USA", "(555) 987-6543", null
+            );
 
             Save(customers, cust1);
+
             Save(customers, cust2);
 
             return customers;

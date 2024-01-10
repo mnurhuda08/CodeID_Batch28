@@ -37,34 +37,10 @@ namespace Day05.tugas.Implemetation
         public List<Supplier> InitListData()
         {
             List<Supplier> suppliers = new List<Supplier>();
-            Supplier supp1 = new Supplier
-            {
-                SupplierID = 1,
-                CompanyName = "ABC Corp",
-                ContactName = "Jane Doe",
-                ContactTitle = "Purchasing Manager",
-                Address = "123 Maple St",
-                City = "Anytown",
-                Region = "CA",
-                PostalCode = "12345",
-                Country = "USA",
-                Phone = "(555) 123-4567",
-                Fax = "(555) 123-4568",
-                Homepage = "www.abc-corp.com"
-            };
-            Supplier supp2 = new Supplier
-            {
-                SupplierID = 2,
-                CompanyName = "Acme Ltd",
-                ContactName = "John Smith",
-                ContactTitle = "Sales Agent",
-                Address = "456 Elm Rd",
-                City = "Anytown",
-                Region = "CA",
-                PostalCode = "12345",
-                Country = "USA",
-                Phone = "(555) 987-6543"
-            };
+            Supplier supp1 = new Supplier(1, "ABC Corp", "Jane Doe", "Purchasing Manager", "123 Maple St", "Anytown", "CA", "12345", "USA", "(555) 123-4567", "(555) 123-4568", "www.abc-corp.com"
+           );
+            Supplier supp2 = new Supplier(2, "Acme Ltd", "John Smith", "Sales Agent", "456 Elm Rd", "Anytown", "CA", "12345", "USA", "(555) 987-6543", null, null
+            );
             Save(suppliers, supp1);
             Save(suppliers, supp2);
 

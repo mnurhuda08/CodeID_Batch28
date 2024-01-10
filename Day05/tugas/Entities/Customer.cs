@@ -16,8 +16,14 @@ namespace Day05.tugas.Entities
         private string phone;
         private string? fax;
 
-        public Customer(string address, string city, string region, string postalCode, string country) : base(address, city, region, postalCode, country)
+        public Customer(int customerID, string companyName, string contactName, string contactTitle, string address, string city, string region, string postalCode, string country, string phone, string? fax) : base(address, city, region, postalCode, country)
         {
+            this.customerID = customerID;
+            this.companyName = companyName;
+            this.contactName = contactName;
+            this.contactTitle = contactTitle;
+            this.phone = phone;
+            this.fax = fax;
             this.customerID = customerID;
             this.companyName = companyName;
             this.contactName = contactName;
