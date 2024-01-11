@@ -39,9 +39,9 @@ namespace Day05.tugas.Implemetation
         public List<Employee> InitListData()
         {
             List<Employee> employees = new List<Employee>();
-            Employee emp1 = new Employee(3, "Ahmad", "Solihul", "Sales", "Mr.", new DateTime(1998, 7, 12), new DateTime(2024, 1, 10), "Jl Kaliurang", "Sleman", "DIY", "56281", "Indonesia", "+26762135921", 3214, "ad_biru.png", "Nothingness", null, "ad_biru.png");
+            Employee emp1 = new Employee(1, "Ahmad", "Solihul", "Sales", "Mr.", new DateTime(1998, 7, 12), new DateTime(2024, 1, 10), "Jl Kaliurang", "Sleman", "DIY", "56281", "Indonesia", "+26762135921", 3214, "ad_biru.png", "Nothingness", null, "ad_biru.png");
 
-            Employee emp2 = new Employee(3, "Rahmad", "Darma", "Admin", "Mr.", new DateTime(1998, 5, 12), new DateTime(2024, 1, 10), "Jl Gebang", "Bantul", "DIY", "56281", "Indonesia", " + 26762135921", 3214, "rd_biru.png", "Nothingness", null, "rd_biru.png");
+            Employee emp2 = new Employee(2, "Rahmad", "Darma", "Admin", "Mr.", new DateTime(1998, 5, 12), new DateTime(2024, 1, 10), "Jl Gebang", "Bantul", "DIY", "56281", "Indonesia", " + 26762135921", 3214, "rd_biru.png", "Nothingness", null, "rd_biru.png");
 
             Save(employees, emp1);
             Save(employees, emp2);

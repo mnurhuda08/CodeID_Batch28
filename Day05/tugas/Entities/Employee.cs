@@ -23,7 +23,7 @@ namespace Day05.tugas.Entities
         private int? reportTo;
         private string? photoPath;
 
-        public Employee(int employeeID, string firstName, string lastName, string title, string titleOfCourtesy, DateTime birthDate, DateTime hireDate, string address, string city, string region, string postalCode, string country, string homePhone, int extension, string photo, string notes, int? reportTo, string? photoPath) : base(address, city, region, postalCode, country)
+        public Employee(int employeeID, string? firstName, string? lastName, string? title, string? titleOfCourtesy, DateTime? birthDate, DateTime? hireDate, string? address, string? city, string? region, string? postalCode, string? country, string? homePhone, int? extension, string? photo, string? notes, int? reportTo, string? photoPath) : base(address, city, region, postalCode, country)
         {
             this.employeeID = employeeID;
             this.firstName = firstName;
@@ -41,16 +41,16 @@ namespace Day05.tugas.Entities
         }
 
         public int EmployeeID { get => employeeID; set => employeeID = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string Title { get => title; set => title = value; }
-        public string TitleOfCourtesy { get => titleOfCourtesy; set => titleOfCourtesy = value; }
-        public DateTime BirthDate { get => birthDate; set => birthDate = value; }
-        public DateTime HireDate { get => hireDate; set => hireDate = value; }
-        public string HomePhone { get => homePhone; set => homePhone = value; }
-        public int Extension { get => extension; set => extension = value; }
+        public string? FirstName { get => firstName; set => firstName = value; }
+        public string? LastName { get => lastName; set => lastName = value; }
+        public string? Title { get => title; set => title = value; }
+        public string? TitleOfCourtesy { get => titleOfCourtesy; set => titleOfCourtesy = value; }
+        public DateTime? BirthDate { get => birthDate; set => birthDate = value; }
+        public DateTime? HireDate { get => hireDate; set => hireDate = value; }
+        public string? HomePhone { get => homePhone; set => homePhone = value; }
+        public int? Extension { get => extension; set => extension = value; }
         public string? Photo { get => photo; set => photo = value; }
-        public string Notes { get => notes; set => notes = value; }
+        public string? Notes { get => notes; set => notes = value; }
         public int? ReportTo { get => reportTo; set => reportTo = value; }
         public string? PhotoPath { get => photoPath; set => photoPath = value; }
 

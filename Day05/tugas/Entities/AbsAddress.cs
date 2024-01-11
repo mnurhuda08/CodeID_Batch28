@@ -8,13 +8,13 @@ namespace Day05.tugas.Entities
 {
     public abstract class AbsAddress
     {
-        private string address;
-        private string city;
-        private string region;
-        private string postalCode;
-        private string country;
+        private string? address;
+        private string? city;
+        private string? region;
+        private string? postalCode;
+        private string? country;
 
-        protected AbsAddress(string address, string city, string region, string postalCode, string country)
+        protected AbsAddress(string? address, string? city, string? region, string? postalCode, string? country)
         {
             this.address = address;
             this.city = city;
@@ -23,11 +23,11 @@ namespace Day05.tugas.Entities
             this.country = country;
         }
 
-        public string Address { get => address; set => address = value; }
-        public string City { get => city; set => city = value; }
-        public string Region { get => region; set => region = value; }
-        public string PostalCode { get => postalCode; set => postalCode = value; }
-        public string Country { get => country; set => country = value; }
+        public string? Address { get => address; set => address = value; }
+        public string? City { get => city; set => city = value; }
+        public string? Region { get => region; set => region = value; }
+        public string? PostalCode { get => postalCode; set => postalCode = value; }
+        public string? Country { get => country; set => country = value; }
 
         public override string? ToString()
         {
