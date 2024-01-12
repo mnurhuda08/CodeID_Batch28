@@ -92,6 +92,50 @@ namespace Day06
 
             //7. delete employee by id 10
             repositoryDBEmployee.Delete(10);
+
+            //Suppliers
+
+            IRepository<Suppliers> repositoryDBSupplier = new RepositorySupplier(adoDbContext);
+            //Ienumerator interface
+            var suppliers = repositoryDBSupplier.FindAllEnumerator();
+            Console.WriteLine("IEnumerator interface Suppliers\n");
+            Console.WriteLine("========================================\n");
+            while (suppliers.MoveNext())
+            {
+                var supplier = suppliers.Current;
+                Console.WriteLine(supplier.ToString());
+            }
+
+            //Ienumerator interface
+            var suppliers1 = repositoryDBSupplier.FindAllEnumerable();
+            Console.WriteLine("\n\nIEnumerable interface Suppliers");
+            Console.WriteLine("========================================\n");
+            foreach (var supplier in suppliers1)
+            {
+                Console.WriteLine(supplier);
+            }
+
+            //CUSTOMER
+
+            IRepository<Customers> repositoryDBCustomer = new RepositoryCustomer(adoDbContext);
+            //Ienumerator interface
+            var customers = repositoryDBCustomer.FindAllEnumerator();
+            Console.WriteLine("IEnumerator interface Customer\n");
+            Console.WriteLine("========================================\n");
+            while (customers.MoveNext())
+            {
+                var customer = customers.Current;
+                Console.WriteLine(customer.ToString());
+            }
+
+            //Ienumerator interface
+            var customers1 = repositoryDBCustomer.FindAllEnumerable();
+            Console.WriteLine("\n\nIEnumerable interface customers");
+            Console.WriteLine("========================================\n");
+            foreach (var customer in customers1)
+            {
+                Console.WriteLine(customer);
+            }
         }
 
         private static void BuildConfiguration()
