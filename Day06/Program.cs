@@ -16,7 +16,7 @@ namespace Day06
             var adoDbContext = new AdoDbContext(Configuration.GetConnectionString("NorthWindDS"));
 
             //Employee
-            IRepositoryEmployee repositoryDBEmployee = new RepositoryEmployee(adoDbContext);
+            IRepository<Employees> repositoryDBEmployee = new RepositoryEmployee(adoDbContext);
 
             //Ienumerator interface
             var employees = repositoryDBEmployee.FindAllEnumerator();
@@ -44,7 +44,7 @@ namespace Day06
 
             Console.WriteLine(employeeByID);
             // Employee findBy Name
-            var employeeByName = repositoryDBEmployee.FindEmployeeByFirstName("A%");
+            var employeeByName = repositoryDBEmployee.FindByName("A%");
             Console.WriteLine("\n\nFind By Name Employee");
             Console.WriteLine("========================================\n");
             foreach (var employee in employeeByName)
@@ -93,28 +93,6 @@ namespace Day06
             //7. delete employee by id 10
             repositoryDBEmployee.Delete(10);
 
-            //Suppliers
-
-            IRepository<Suppliers> repositoryDBSupplier = new RepositorySupplier(adoDbContext);
-            //Ienumerator interface
-            var suppliers = repositoryDBSupplier.FindAllEnumerator();
-            Console.WriteLine("IEnumerator interface Suppliers\n");
-            Console.WriteLine("========================================\n");
-            while (suppliers.MoveNext())
-            {
-                var supplier = suppliers.Current;
-                Console.WriteLine(supplier.ToString());
-            }
-
-            //Ienumerator interface
-            var suppliers1 = repositoryDBSupplier.FindAllEnumerable();
-            Console.WriteLine("\n\nIEnumerable interface Suppliers");
-            Console.WriteLine("========================================\n");
-            foreach (var supplier in suppliers1)
-            {
-                Console.WriteLine(supplier);
-            }
-
             //CUSTOMER
 
             IRepository<Customers> repositoryDBCustomer = new RepositoryCustomer(adoDbContext);
@@ -136,6 +114,141 @@ namespace Day06
             {
                 Console.WriteLine(customer);
             }
+
+            // Customer findBy ID
+            var customerByID = repositoryDBCustomer.FindByID("BONAP");
+            Console.WriteLine("\n\nFind By ID Customer");
+            Console.WriteLine("========================================\n");
+
+            Console.WriteLine(customerByID);
+            // Customer findBy Name
+            var customerByName = repositoryDBCustomer.FindByName("A%");
+            Console.WriteLine("\n\nFind By Name Customer");
+            Console.WriteLine("========================================\n");
+            foreach (var customer in customerByName)
+            {
+                Console.WriteLine(customer.ToString());
+            }
+
+            Console.WriteLine(customerByName);
+
+            //5. create customer
+            var customer1 = new Customers
+            {
+                CustomerID = "DANDA",
+                CompanyName = "ABC Company",
+                ContactName = "John Doe",
+                ContactTitle = "CEO",
+                Address = "123 Main St",
+                City = "Anytown",
+                Region = "East",
+                PostalCode = "12345",
+                Country = "USA",
+                Phone = "555-1234",
+                Fax = "555-5678"
+            };
+
+            customer1 = repositoryDBCustomer.Create(ref customer1);
+
+            Console.WriteLine("\n\nCreate Customer");
+            Console.WriteLine("========================================\n");
+            Console.WriteLine(customer1.ToString());
+
+            //6. Update Customer
+            var findUpdateCust = new Customers
+            {
+                CustomerID = "BONAP",
+                ContactName = "Widi",
+            };
+
+            var updateCust = repositoryDBCustomer.Update(findUpdateCust);
+            var updatedCustomerByID = repositoryDBCustomer.FindByID(findUpdateCust.CustomerID);
+
+            Console.WriteLine("\nUpdated By ID Customer");
+            Console.WriteLine("========================================\n");
+            Console.WriteLine(updatedCustomerByID);
+
+            //7. delete employee by id 10
+            repositoryDBCustomer.Delete("DINDA");
+
+            //Supplier
+
+            IRepository<Suppliers> repositoryDBSupplier = new RepositorySupplier(adoDbContext);
+            //Ienumerator interface
+            var suppliers = repositoryDBSupplier.FindAllEnumerator();
+            Console.WriteLine("IEnumerator interface Supplier\n");
+            Console.WriteLine("========================================\n");
+            while (suppliers.MoveNext())
+            {
+                var supplier = suppliers.Current;
+                Console.WriteLine(supplier.ToString());
+            }
+
+            //Ienumerator interface
+            var suppliers1 = repositoryDBSupplier.FindAllEnumerable();
+            Console.WriteLine("\n\nIEnumerable interface suppliers");
+            Console.WriteLine("========================================\n");
+            foreach (var supplier in suppliers1)
+            {
+                Console.WriteLine(supplier);
+            }
+
+            // Supplier findBy ID
+            var supplierByID = repositoryDBSupplier.FindByID(4);
+            Console.WriteLine("\n\nFind By ID Supplier");
+            Console.WriteLine("========================================\n");
+
+            Console.WriteLine(supplierByID);
+            // Supplier findBy Name
+            var supplierByName = repositoryDBSupplier.FindByName("A%");
+            Console.WriteLine("\n\nFind By Name Supplier");
+            Console.WriteLine("========================================\n");
+            foreach (var supplier in supplierByName)
+            {
+                Console.WriteLine(supplier.ToString());
+            }
+
+            Console.WriteLine(supplierByName);
+
+            //5. create supplier
+            var supplier1 = new Suppliers
+            {
+                SupplierID = 30,
+                CompanyName = "ABC Suppliers",
+                ContactName = "John Supplier",
+                ContactTitle = "Sales Manager",
+                Address = "456 Supplier St",
+                City = "Supplier City",
+                Region = "Supplier Region",
+                PostalCode = "78901",
+                Country = "Supplier Country",
+                Phone = "987-654-3210",
+                Fax = "987-654-3211",
+                HomePage = "http://www.abcsuppliers.com"
+            };
+
+            supplier1 = repositoryDBSupplier.Create(ref supplier1);
+
+            Console.WriteLine("\n\nCreate Supplier");
+            Console.WriteLine("========================================\n");
+            Console.WriteLine(supplier1.ToString());
+
+            //6. Update Supplier
+            var findUpdateSupp = new Suppliers
+            {
+                SupplierID = 8,
+                ContactName = "Widi",
+            };
+
+            var updateSupp = repositoryDBSupplier.Update(findUpdateSupp);
+            var updatedSupplierByID = repositoryDBSupplier.FindByID(findUpdateSupp.SupplierID);
+
+            Console.WriteLine("\nUpdated By ID Supplier");
+            Console.WriteLine("========================================\n");
+            Console.WriteLine(updatedSupplierByID);
+
+            //7. delete employee by id 10
+            repositoryDBSupplier.Delete("DINDA");
         }
 
         private static void BuildConfiguration()

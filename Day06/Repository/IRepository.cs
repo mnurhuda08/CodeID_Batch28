@@ -13,6 +13,14 @@ namespace Day06.Repository
 
         IEnumerable<T> FindAllEnumerable();
 
-        T FindByID(long id);
+        T FindByID(object id);
+
+        IEnumerable<T> FindByName(string name);
+
+        T Create(ref T item);
+
+        T Update(T item);
+
+        void Delete(object id);
     }
 }

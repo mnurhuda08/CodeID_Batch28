@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Day06.Repository
 {
-    public class RepositoryEmployee : IRepositoryEmployee
+    public class RepositoryEmployee : IRepository<Employees>
     {
         private readonly AdoDbContext _adoContext;
 
@@ -22,7 +22,7 @@ namespace Day06.Repository
         {
             SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = $"INSERT INTO Employees (LastName, FirstName,  Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath) VALUES (@lastName,@firstName, @title, @titleOfCourtesy, @birthDate, @hireDate, @address, @city, @region, @postalCode, @country, @homePhone, @extension, @notes, @reportTo, @photoPath);",
+                CommandText = "INSERT INTO Employees (LastName, FirstName,  Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath) VALUES (@lastName,@firstName, @title, @titleOfCourtesy, @birthDate, @hireDate, @address, @city, @region, @postalCode, @country, @homePhone, @extension, @notes, @reportTo, @photoPath);",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[]
                 {
@@ -118,7 +118,7 @@ namespace Day06.Repository
             return employees;
         }
 
-        public void Delete(int id)
+        public void Delete(object id)
         {
             SqlCommandModel model = new SqlCommandModel
             {
@@ -138,8 +138,13 @@ namespace Day06.Repository
 
         public IEnumerable<Employees> FindAllEnumerable()
         {
-            IEnumerator<Employees> dataSet = _adoContext
-               .ExecuteReader<Employees>("select FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath from Employees");
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SElECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
+                CommandType = CommandType.Text,
+            };
+
+            IEnumerator<Employees> dataSet = _adoContext.ExecuteReader<Employees>(model.CommandText);
 
             _adoContext.Dispose();
 
@@ -152,26 +157,61 @@ namespace Day06.Repository
 
         public IEnumerator<Employees> FindAllEnumerator()
         {
-            IEnumerator<Employees> dataSet = _adoContext
-                .ExecuteReader<Employees>("SELECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees");
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SELECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
+                CommandType = CommandType.Text,
+            };
+
+            IEnumerator<Employees> dataSet = _adoContext.ExecuteReader<Employees>(model.CommandText);
 
             _adoContext.Dispose();
 
             return dataSet;
         }
 
-        public IEnumerable<Employees> FindEmployeeByFirstName(string firstName)
+        public Employees FindByID(object id)
         {
             SqlCommandModel model = new SqlCommandModel()
             {
-                CommandText = "SELECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees WHERE FirstName like @firstName",
+                CommandText = "SELECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees WHERE EmployeeId=@id;",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
                     new SqlCommandParameterModel() {
-                        ParameterName = "@firstName",
-                        DataType = DbType.String,
-                        Value = firstName
+                        ParameterName = "@id",
+                        DataType = DbType.Int64,
+                        Value = id
                     }
+                }
+            };
+
+            IEnumerator<Employees> dataSet = _adoContext.ExecuteReader<Employees>(model);
+
+            var employee = new Employees();
+
+            //selalu gunakan iterator tuk dapatkan value dari IEnumerator
+            while (dataSet.MoveNext())
+            {
+                employee = dataSet.Current;
+            }
+
+            _adoContext.Dispose();
+
+            return employee;
+        }
+
+        public IEnumerable<Employees> FindByName(string name)
+        {
+            SqlCommandModel model = new SqlCommandModel()
+            {
+                CommandText = "SELECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees WHERE FirstName LIKE @name OR LastName LIKE @name",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[] {
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@name",
+                        DataType = DbType.String,
+                        Value = name
+                    },
                 }
             };
 
@@ -185,36 +225,6 @@ namespace Day06.Repository
             }
 
             _adoContext.Dispose();
-        }
-
-        public Employees FindByID(long id)
-        {
-            SqlCommandModel model = new SqlCommandModel()
-            {
-                CommandText = "select FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath from Employees where EmployeeId=@Id;",
-                CommandType = CommandType.Text,
-                CommandParameters = new SqlCommandParameterModel[] {
-                    new SqlCommandParameterModel() {
-                        ParameterName = "@Id",
-                        DataType = DbType.Int64,
-                        Value = id
-                    }
-                }
-            };
-
-            var dataSet = _adoContext.ExecuteReader<Employees>(model);
-
-            var employee = new Employees();
-
-            //selalu gunakan iterator tuk dapatkan value dari IEnumerator
-            while (dataSet.MoveNext())
-            {
-                employee = dataSet.Current;
-            }
-
-            _adoContext.Dispose();
-
-            return employee;
         }
 
         public Employees Update(Employees employees)

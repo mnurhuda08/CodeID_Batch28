@@ -9,19 +9,115 @@ using System.Threading.Tasks;
 
 namespace Day06.Repository
 {
-    public class RepositoryCustomer : IRepository<Customers>
+    internal class RepositoryCustomer : IRepository<Customers>
     {
         private readonly AdoDbContext _adoContext;
 
-        public RepositoryCustomer(AdoDbContext adoContext)
+        public RepositoryCustomer(AdoDbContext adoDbContext)
         {
-            _adoContext = adoContext;
+            _adoContext = adoDbContext;
+        }
+
+        public Customers Create(ref Customers customers)
+        {
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = $"INSERT INTO Customers (CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax) VALUES (@id, @companyName, @contactName, @contactTitle, @address, @city, @region, @postalCode, @country, @phone,@fax);",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[]
+                {
+                    new SqlCommandParameterModel() {
+                    ParameterName = "@id",
+                    DataType = DbType.String,
+                    Value = customers.CustomerID
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@companyName",
+                        DataType = DbType.String,
+                        Value = customers.CompanyName
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@contactName",
+                        DataType = DbType.String,
+                        Value = customers.ContactName
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@contactTitle",
+                        DataType = DbType.String,
+                        Value = customers.ContactTitle
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@address",
+                        DataType = DbType.String,
+                        Value = customers.Address
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@city",
+                        DataType = DbType.String,
+                        Value = customers.City
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@region",
+                        DataType = DbType.String,
+                        Value = customers.Region
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@postalCode",
+                        DataType = DbType.String,
+                        Value = customers.PostalCode
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@country",
+                        DataType = DbType.String,
+                        Value = customers.Country
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@phone",
+                        DataType = DbType.String,
+                        Value = customers.Phone
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@fax",
+                        DataType = DbType.String,
+                        Value = customers.Fax
+                    },
+                }
+            };
+            _adoContext.ExecuteNonQuery(model);
+            _adoContext.Dispose();
+            return customers;
+        }
+
+        public void Delete(object id)
+        {
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "DELETE FROM Customers WHERE CustomerID=@id",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[]
+                {
+                        new SqlCommandParameterModel()
+                        {
+                            ParameterName = "@id",
+                            DataType = DbType.String,
+                            Value = id
+                        }
+                }
+            };
+
+            _adoContext.ExecuteNonQuery(model);
+            _adoContext.Dispose();
         }
 
         public IEnumerable<Customers> FindAllEnumerable()
         {
-            IEnumerator<Customers> dataSet = _adoContext
-              .ExecuteReader<Customers>("SELECT * FROM Customers");
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SELECT * FROM Customers",
+                CommandType = CommandType.Text,
+            };
+
+            IEnumerator<Customers> dataSet = _adoContext.ExecuteReader<Customers>(model.CommandText);
 
             _adoContext.Dispose();
 
@@ -34,42 +130,97 @@ namespace Day06.Repository
 
         public IEnumerator<Customers> FindAllEnumerator()
         {
-            IEnumerator<Customers> dataSet = _adoContext
-               .ExecuteReader<Customers>("SELECT * FROM Customers");
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SELECT * FROM Customers",
+                CommandType = CommandType.Text,
+            };
 
+            IEnumerator<Customers> dataSet = _adoContext.ExecuteReader<Customers>(model.CommandText);
             _adoContext.Dispose();
 
             return dataSet;
         }
 
-        public Customers FindByID(long id)
+        public Customers FindByID(object id)
         {
-            SqlCommandModel model = new SqlCommandModel()
+            SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = "SELECT * FROM Customers WHERE Customers=@Id;",
+                CommandText = "SELECT * FROM Customers WHERE CustomerID = @id",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
-                    new SqlCommandParameterModel() {
-                        ParameterName = "@Id",
-                        DataType = DbType.Int64,
+                    new SqlCommandParameterModel()
+                    {
+                        ParameterName = "@id",
+                        DataType = DbType.String,
                         Value = id
                     }
                 }
             };
 
-            var dataSet = _adoContext.ExecuteReader<Customers>(model);
+            IEnumerator<Customers> dataSet = _adoContext.ExecuteReader<Customers>(model);
 
             var customer = new Customers();
 
-            //selalu gunakan iterator tuk dapatkan value dari IEnumerator
             while (dataSet.MoveNext())
             {
                 customer = dataSet.Current;
             }
 
             _adoContext.Dispose();
-
             return customer;
+        }
+
+        public IEnumerable<Customers> FindByName(string name)
+        {
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SELECT * FROM Customers WHERE CompanyName LIKE @name OR ContactName LIKE @name",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[] {
+                    new SqlCommandParameterModel()
+                    {
+                        ParameterName = "@name",
+                        DataType = DbType.String,
+                        Value = name
+                    }
+                }
+            };
+
+            var dataSet = _adoContext.ExecuteReader<Customers>(model);
+
+            while (dataSet.MoveNext())
+            {
+                var customer = dataSet.Current;
+                yield return customer;
+            }
+
+            _adoContext.Dispose();
+        }
+
+        public Customers Update(Customers customers)
+        {
+            SqlCommandModel model = new SqlCommandModel()
+            {
+                CommandText = "UPDATE Customers SET ContactName = @contactName WHERE CustomerID=@id",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[] {
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@contactName",
+                        DataType = DbType.String,
+                        Value = customers.ContactName
+                    },
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@id",
+                        DataType = DbType.String,
+                        Value = customers.CustomerID
+                    }
+                }
+            };
+
+            _adoContext.ExecuteNonQuery(model);
+            _adoContext.Dispose();
+            return customers;
         }
     }
 }

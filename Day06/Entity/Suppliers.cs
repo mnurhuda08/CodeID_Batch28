@@ -21,11 +21,11 @@ namespace Day06.Entity
         public string Country { get; set; }
         public string Phone { get; set; }
         public string? Fax { get; set; }
-        public string? Homepage { get; set; }
+        public string? HomePage { get; set; }
 
         public override string? ToString()
         {
-            return $"Supplier ID : {SupplierID} \nCompany Name : {CompanyName} \nContact Name : {ContactName} \nContact Title : {ContactTitle} \nAddress :{Address} \nCity : {City} \nRegion:{Region} \nPostalCode : {PostalCode} \nCountry : {Country} \nHome Phone : {Phone} \nFax:{Fax} \nHome Page:{Homepage} \n";
+            return $"Supplier ID : {SupplierID} \nCompany Name : {CompanyName} \nContact Name : {ContactName} \nContact Title : {ContactTitle} \nAddress :{Address} \nCity : {City} \nRegion:{Region} \nPostalCode : {PostalCode} \nCountry : {Country} \nHome Phone : {Phone} \nFax:{Fax} \nHome Page:{HomePage} \n";
         }
     }
 }
