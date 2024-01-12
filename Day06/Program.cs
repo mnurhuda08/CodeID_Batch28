@@ -15,47 +15,83 @@ namespace Day06
             BuildConfiguration();
             var adoDbContext = new AdoDbContext(Configuration.GetConnectionString("NorthWindDS"));
 
-            IRepository<Suppliers> repositoryDBSupplier = new RepositoryDB<Suppliers>(adoDbContext);
+            //Employee
+            IRepositoryEmployee repositoryDBEmployee = new RepositoryEmployee(adoDbContext);
 
             //Ienumerator interface
-            var suppliers = repositoryDBSupplier.FindAllEnumerator();
-            Console.WriteLine("IEnumerator interface supplier\n");
+            var employees = repositoryDBEmployee.FindAllEnumerator();
+            Console.WriteLine("IEnumerator interface Employee\n");
             Console.WriteLine("========================================\n");
-            while (suppliers.MoveNext())
+            while (employees.MoveNext())
             {
-                var supplier = suppliers.Current;
-                Console.WriteLine(supplier.ToString());
+                var employee = employees.Current;
+                Console.WriteLine(employee.ToString());
             }
 
             //Ienumerator interface
-            var suppliers1 = repositoryDBSupplier.FindAllEnumerable();
-            Console.WriteLine("\n\nIEnumerable interface supplier");
+            var employees1 = repositoryDBEmployee.FindAllEnumerable();
+            Console.WriteLine("\n\nIEnumerable interface Employee");
             Console.WriteLine("========================================\n");
-            foreach (var supplier in suppliers1)
+            foreach (var employee in employees1)
             {
-                Console.WriteLine(supplier);
+                Console.WriteLine(employee);
             }
 
-            IRepository<Customers> repositoryDBCustomer = new RepositoryDB<Customers>(adoDbContext);
-
-            //Ienumerator interface
-            var customers = repositoryDBCustomer.FindAllEnumerator();
-            Console.WriteLine("IEnumerator interface Customer\n");
+            // Employee findBy ID
+            var employeeByID = repositoryDBEmployee.FindByID(2);
+            Console.WriteLine("\n\nFind By ID Employee");
             Console.WriteLine("========================================\n");
-            while (customers.MoveNext())
+
+            Console.WriteLine(employeeByID);
+            // Employee findBy Name
+            var employeeByName = repositoryDBEmployee.FindEmployeeByFirstName("A%");
+            Console.WriteLine("\n\nFind By Name Employee");
+            Console.WriteLine("========================================\n");
+            foreach (var employee in employeeByName)
             {
-                var customer = customers.Current;
-                Console.WriteLine(customer.ToString());
+                Console.WriteLine(employee.ToString());
             }
 
-            //Ienumerator interface
-            var customers1 = repositoryDBCustomer.FindAllEnumerable();
-            Console.WriteLine("\n\nIEnumerable interface customer");
-            Console.WriteLine("========================================\n");
-            foreach (var customer in customers1)
+            Console.WriteLine(employeeByName);
+            //5. createEmployee, EmployeeId ga diisi, otomatis dari sequence database
+            var employee1 = new Employees
             {
-                Console.WriteLine(customer);
-            }
+                EmployeeID = 10,
+                FirstName = "John",
+                LastName = "Doe",
+                Title = "Sales Manager",
+                TitleOfCourtesy = "Mr.",
+                BirthDate = new DateTime(1980, 1, 1),
+                HireDate = new DateTime(2015, 3, 1),
+                Address = "123 Main St",
+                City = "Anytown",
+                Region = "CA",
+                PostalCode = "12345",
+                Country = "USA",
+                HomePhone = "555-1234",
+                Extension = "1234",
+                Notes = "Lorem Ipsum Dolor Sit Amet",
+                ReportsTo = 5,
+                PhotoPath = "john_doe.png",
+            };
+
+            employee1 = repositoryDBEmployee.Create(ref employee1);
+            Console.WriteLine(employee1.ToString());
+
+            //6. Update Employee
+            var findUpdateEmps = new Employees
+            {
+                EmployeeID = 8,
+                FirstName = "Widi",
+                LastName = "Wini",
+                BirthDate = DateTime.Now
+            };
+
+            var updateEmp = repositoryDBEmployee.Update(findUpdateEmps);
+            Console.WriteLine(updateEmp.ToString());
+
+            //7. delete employee by id 10
+            repositoryDBEmployee.Delete(10);
         }
 
         private static void BuildConfiguration()
