@@ -231,19 +231,24 @@ namespace Day06.Repository
         {
             SqlCommandModel model = new SqlCommandModel()
             {
-                CommandText = "UPDATE Employees SET firstName=@firstName WHERE employeeId=@Id",
+                CommandText = "UPDATE Employees SET firstName=@firstName lastName=@lastName WHERE employeeId=@id",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
+                    new SqlCommandParameterModel() {
+                        ParameterName = "@id",
+                        DataType = DbType.Int64,
+                        Value = employees.EmployeeID
+                    },
                     new SqlCommandParameterModel() {
                         ParameterName = "@firstName",
                         DataType = DbType.String,
                         Value = employees.FirstName
                     },
                     new SqlCommandParameterModel() {
-                        ParameterName = "@Id",
-                        DataType = DbType.Int64,
-                        Value = employees.EmployeeID
-                    }
+                        ParameterName = "@lastName",
+                        DataType = DbType.String,
+                        Value = employees.LastName
+                    },
                 }
             };
 

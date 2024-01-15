@@ -54,8 +54,8 @@ namespace Day06
 
             Console.WriteLine(employeeByName);
             //5. createEmployee, EmployeeId ga diisi, otomatis dari sequence database
-            var employee1 = new Employees
-            {
+            Employees employee1 = new Employees(10, "John", "Doe", "Sales Manager", "Mr.", new DateTime(1980, 1, 1), new DateTime(2015, 3, 1), "123 Main St", "Anytown", "CA", "!234", "USA", "555-1234", "1234", "Lorem Ipsum Dolor Sit Amet", 5, "john_doe.png");
+            /*{
                 EmployeeID = 10,
                 FirstName = "John",
                 LastName = "Doe",
@@ -73,19 +73,13 @@ namespace Day06
                 Notes = "Lorem Ipsum Dolor Sit Amet",
                 ReportsTo = 5,
                 PhotoPath = "john_doe.png",
-            };
+            };*/
 
             employee1 = repositoryDBEmployee.Create(ref employee1);
             Console.WriteLine(employee1.ToString());
 
             //6. Update Employee
-            var findUpdateEmps = new Employees
-            {
-                EmployeeID = 8,
-                FirstName = "Widi",
-                LastName = "Wini",
-                BirthDate = DateTime.Now
-            };
+            var findUpdateEmps = new Employees(8, "Widi", "Wini");
 
             var updateEmp = repositoryDBEmployee.Update(findUpdateEmps);
             Console.WriteLine(updateEmp.ToString());
@@ -133,8 +127,8 @@ namespace Day06
             Console.WriteLine(customerByName);
 
             //5. create customer
-            var customer1 = new Customers
-            {
+            var customer1 = new Customers("DANDA", "ABC Company", "John Doe", "CEO", "123 Main St", "Anytown", "East", "12345", "USA", "555-1234", "555-5678");
+            /*{
                 CustomerID = "DANDA",
                 CompanyName = "ABC Company",
                 ContactName = "John Doe",
@@ -146,7 +140,7 @@ namespace Day06
                 Country = "USA",
                 Phone = "555-1234",
                 Fax = "555-5678"
-            };
+            };*/
 
             customer1 = repositoryDBCustomer.Create(ref customer1);
 
@@ -154,7 +148,7 @@ namespace Day06
             Console.WriteLine("========================================\n");
             Console.WriteLine(customer1.ToString());
 
-            //6. Update Customer
+            /*//6. Update Customer
             var findUpdateCust = new Customers
             {
                 CustomerID = "BONAP",
@@ -166,7 +160,7 @@ namespace Day06
 
             Console.WriteLine("\nUpdated By ID Customer");
             Console.WriteLine("========================================\n");
-            Console.WriteLine(updatedCustomerByID);
+            Console.WriteLine(updatedCustomerByID);*/
 
             //7. delete employee by id 10
             repositoryDBCustomer.Delete("DINDA");
@@ -211,8 +205,8 @@ namespace Day06
             Console.WriteLine(supplierByName);
 
             //5. create supplier
-            var supplier1 = new Suppliers
-            {
+            var supplier1 = new Suppliers(30, "ABC Suppliers", "John Supplier", "Sales Manager", "456 Supplier St", "Supplier City", "Supplier Region", "78901", "Supplier Country", "987-654-3210", "987-654-3211", "http://www.abcsuppliers.com");
+            /*{
                 SupplierID = 30,
                 CompanyName = "ABC Suppliers",
                 ContactName = "John Supplier",
@@ -225,7 +219,7 @@ namespace Day06
                 Phone = "987-654-3210",
                 Fax = "987-654-3211",
                 HomePage = "http://www.abcsuppliers.com"
-            };
+            };*/
 
             supplier1 = repositoryDBSupplier.Create(ref supplier1);
 
@@ -234,7 +228,7 @@ namespace Day06
             Console.WriteLine(supplier1.ToString());
 
             //6. Update Supplier
-            var findUpdateSupp = new Suppliers
+            /*var findUpdateSupp = new Suppliers
             {
                 SupplierID = 8,
                 ContactName = "Widi",
@@ -245,7 +239,7 @@ namespace Day06
 
             Console.WriteLine("\nUpdated By ID Supplier");
             Console.WriteLine("========================================\n");
-            Console.WriteLine(updatedSupplierByID);
+            Console.WriteLine(updatedSupplierByID);*/
 
             //7. delete employee by id 10
             repositoryDBSupplier.Delete("DINDA");
