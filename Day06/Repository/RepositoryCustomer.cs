@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace Day06.Repository
 {
-    internal class RepositoryCustomer : IRepository<Customers>
+    /*internal class RepositoryCustomer : IRepository<Customers>*/
+
+    internal class RepositoryCustomer
     {
         private readonly AdoDbContext _adoContext;
 

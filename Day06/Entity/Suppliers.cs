@@ -27,9 +27,14 @@ namespace Day06.Entity
         {
         }
 
-        public Suppliers(int supplierID, string companyName, string contactName, string contactTitle, string address, string city, string region, string postalCode, string country, string phone, string? fax, string? homePage)
+        public Suppliers(int supplierID, string contactName)
         {
             this.supplierID = supplierID;
+            this.contactName = contactName;
+        }
+
+        public Suppliers(string companyName, string contactName, string contactTitle, string address, string city, string region, string postalCode, string country, string phone, string? fax, string? homePage)
+        {
             this.companyName = companyName;
             this.contactName = contactName;
             this.contactTitle = contactTitle;

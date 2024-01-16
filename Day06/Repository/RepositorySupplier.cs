@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace Day06.Repository
 {
-    public class RepositorySupplier : IRepository<Suppliers>
+    /*public class RepositorySupplier : IRepository<Suppliers>*/
+
+    public class RepositorySupplier
     {
         private readonly AdoDbContext _adoContext;
 
@@ -22,7 +24,7 @@ namespace Day06.Repository
         {
             SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = $"INSERT INTO Suppliers (SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage) VALUES (@id, @companyName, @contactName, @contactTitle, @address, @city, @region, @postalCode, @country, @phone,@fax, @homePage);",
+                CommandText = $"INSERT INTO Suppliers (CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax, HomePage) VALUES (@companyName, @contactName, @contactTitle, @address, @city, @region, @postalCode, @country, @phone,@fax, @homePage);",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[]
                 {
@@ -149,7 +151,7 @@ namespace Day06.Repository
         {
             SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = "SELECT * FROM Suppliers WHERE CustomerID = @id",
+                CommandText = "SELECT * FROM Suppliers WHERE SupplierID = @id",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
                     new SqlCommandParameterModel()
@@ -205,7 +207,7 @@ namespace Day06.Repository
         {
             SqlCommandModel model = new SqlCommandModel()
             {
-                CommandText = "UPDATE Suppliers SET ContactName = @contactName WHERE CustomerID=@id",
+                CommandText = "UPDATE Suppliers SET ContactName = @contactName WHERE SupplierID=@id",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
                     new SqlCommandParameterModel() {

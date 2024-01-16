@@ -33,18 +33,18 @@ namespace Day06.Entity
         }
 
         //consturctor for update
-        public Employees(int employeeID, string? firstName, string? lastName)
+        public Employees(int employeeID, string? lastName, string? firstName)
         {
             this.employeeID = employeeID;
-            this.firstName = firstName;
             this.lastName = lastName;
+            this.firstName = firstName;
         }
 
-        public Employees(int employeeID, string? firstName, string? lastName, string? title, string? titleOfCourtesy, DateTime? birthDate, DateTime? hireDate, string? address, string? city, string? region, string? postalCode, string? country, string? homePhone, string? extension, string? notes, int? reportsTo, string? photoPath)
+        public Employees(int employeeID, string? lastName, string? firstName, string? title, string? titleOfCourtesy, DateTime? birthDate, DateTime? hireDate, string? address, string? city, string? region, string? postalCode, string? country, string? homePhone, string? extension, string? notes, int? reportsTo, string? photoPath)
         {
             this.employeeID = employeeID;
-            this.firstName = firstName;
             this.lastName = lastName;
+            this.firstName = firstName;
             this.title = title;
             this.titleOfCourtesy = titleOfCourtesy;
             this.birthDate = birthDate;
@@ -62,8 +62,8 @@ namespace Day06.Entity
         }
 
         public int EmployeeID { get => employeeID; set => employeeID = value; }
-        public string? FirstName { get => firstName; set => firstName = value; }
         public string? LastName { get => lastName; set => lastName = value; }
+        public string? FirstName { get => firstName; set => firstName = value; }
         public string? Title { get => title; set => title = value; }
         public string? TitleOfCourtesy { get => titleOfCourtesy; set => titleOfCourtesy = value; }
         public DateTime? BirthDate { get => birthDate; set => birthDate = value; }

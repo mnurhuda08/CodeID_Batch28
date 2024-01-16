@@ -155,6 +155,27 @@ namespace Day06.Repository
             }
         }
 
+        public async Task<IEnumerable<Employees>> FindAllTaskEnumerableAsync()
+        {
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SELECT EmployeeID, FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[] { }
+            };
+            IAsyncEnumerator<Employees> dataSet = _adoContext.ExecuteReaderAsync<Employees>(model);
+
+            var employees = new List<Employees>();
+
+            while (await dataSet.MoveNextAsync())
+            {
+                employees.Add(dataSet.Current);
+            }
+            _adoContext.Dispose();
+
+            return employees;
+        }
+
         public IEnumerator<Employees> FindAllEnumerator()
         {
             SqlCommandModel model = new SqlCommandModel
@@ -231,7 +252,7 @@ namespace Day06.Repository
         {
             SqlCommandModel model = new SqlCommandModel()
             {
-                CommandText = "UPDATE Employees SET firstName=@firstName lastName=@lastName WHERE employeeId=@id",
+                CommandText = "UPDATE Employees SET FirstName=@firstName, LastName=@lastName WHERE employeeId=@id",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
                     new SqlCommandParameterModel() {
@@ -255,6 +276,26 @@ namespace Day06.Repository
             _adoContext.ExecuteNonQuery(model);
             _adoContext.Dispose();
             return employees;
+        }
+
+        async IAsyncEnumerable<Employees> IRepository<Employees>.FindAllEnumerableAsync()
+        {
+            SqlCommandModel model = new SqlCommandModel
+            {
+                CommandText = "SELECT EmployeeID, FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
+                CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[] { }
+            };
+            IAsyncEnumerator<Employees> dataSet = _adoContext.ExecuteReaderAsync<Employees>(model);
+
+            /*var employees = new List<Employees>();*/
+
+            while (await dataSet.MoveNextAsync())
+            {
+                var employee = dataSet.Current;
+                yield return employee;
+            }
+            _adoContext.Dispose();
         }
     }
 }

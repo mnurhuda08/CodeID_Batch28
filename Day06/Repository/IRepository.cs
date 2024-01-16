@@ -13,6 +13,10 @@ namespace Day06.Repository
 
         IEnumerable<T> FindAllEnumerable();
 
+        Task<IEnumerable<T>> FindAllTaskEnumerableAsync(); // alternate
+
+        IAsyncEnumerable<T> FindAllEnumerableAsync();
+
         T FindByID(object id);
 
         IEnumerable<T> FindByName(string name);

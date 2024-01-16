@@ -26,6 +26,12 @@ namespace Day06.Entity
         {
         }
 
+        public Customers(string customerID, string contactName)
+        {
+            this.customerID = customerID;
+            this.contactName = contactName;
+        }
+
         public Customers(string customerID, string companyName, string contactName, string contactTitle, string address, string city, string region, string postalCode, string country, string phone, string fax)
         {
             this.customerID = customerID;
