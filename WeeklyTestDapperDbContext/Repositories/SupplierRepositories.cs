@@ -58,7 +58,6 @@ namespace WeeklyTestDapperDbContext.Repositories
             };
 
             _dapperDbContext.ExecuteNonQuery(model);
-            _dapperDbContext.Dispose();
             return entity;
         }
 
@@ -78,7 +77,6 @@ namespace WeeklyTestDapperDbContext.Repositories
                 }
             };
             _dapperDbContext.ExecuteNonQuery(model);
-            _dapperDbContext.Dispose();
         }
 
         public override IEnumerable<Supplier> FindAll()
@@ -97,7 +95,6 @@ namespace WeeklyTestDapperDbContext.Repositories
                 var supplier = dataSet.Current;
                 yield return supplier;
             }
-            _dapperDbContext.Dispose();
         }
 
         public override Supplier FindByID(int id)
@@ -122,7 +119,6 @@ namespace WeeklyTestDapperDbContext.Repositories
             {
                 supplier = dataSet.Current;
             }
-            _dapperDbContext.Dispose();
             return supplier;
         }
 
@@ -130,7 +126,7 @@ namespace WeeklyTestDapperDbContext.Repositories
         {
             SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = "UPDATE Suppliers SET ContactName = @contactName WHERE SupplierID = @id",
+                CommandText = "UPDATE Suppliers SET ContactName=@contactName WHERE SupplierID=@id",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] {
                     new SqlCommandParameterModel()
@@ -148,7 +144,6 @@ namespace WeeklyTestDapperDbContext.Repositories
                 }
             };
             _dapperDbContext.ExecuteNonQuery(model);
-            _dapperDbContext.Dispose();
             return entity;
         }
     }

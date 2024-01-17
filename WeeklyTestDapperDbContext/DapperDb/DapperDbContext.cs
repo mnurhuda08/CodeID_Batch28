@@ -65,9 +65,9 @@ namespace WeeklyTestDapperDbContext.DapperDb
                 commandType: CommandType.Text
             );
             }
-            catch (Exception ex)
+            finally
             {
-                Console.WriteLine($"Error executing non-query: {ex.Message}");
+                _dbConnection.Close();
             }
         }
 

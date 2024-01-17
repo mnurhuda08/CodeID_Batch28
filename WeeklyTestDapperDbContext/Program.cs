@@ -19,20 +19,20 @@ namespace WeeklyTestDapperDbContext
             IRepositoryBase<Supplier> supplierRepository = new SupplierRepositories(dapperDbContext);
             Console.WriteLine("\nFind All Suppliers ");
             Console.WriteLine("========================================\n");
-            /*var suppliers = supplierRepository.FindAll();
+            var suppliers = supplierRepository.FindAll();
             foreach (var supplier in suppliers)
             {
                 Console.WriteLine($"{supplier}");
-            }*/
+            }
 
             Console.WriteLine("\nFind By ID Supplier ");
             Console.WriteLine("========================================\n");
-            /*var supplierByID = supplierRepository.FindByID(8);
-            Console.WriteLine($"{supplierByID}");*/
+            var supplierByID = supplierRepository.FindByID(8);
+            Console.WriteLine($"{supplierByID}");
 
             Console.WriteLine("\nCreate Supplier ");
             Console.WriteLine("========================================\n");
-            /*var newSupplier = new Supplier()
+            var newSupplier = new Supplier()
             {
                 CompanyName = "ABC Company",
                 ContactName = "John Doe",
@@ -40,7 +40,7 @@ namespace WeeklyTestDapperDbContext
                 Phone = "555-1234"
             };
             newSupplier = supplierRepository.Create(ref newSupplier);
-            Console.WriteLine($"{newSupplier}");*/
+            Console.WriteLine($"{newSupplier}");
 
             Console.WriteLine("\nUpdate Supplier ");
             Console.WriteLine("========================================\n");
@@ -55,7 +55,7 @@ namespace WeeklyTestDapperDbContext
 
             Console.WriteLine("\nDelete Supplier ");
             Console.WriteLine("========================================\n");
-            supplierRepository.Delete(13);
+            supplierRepository.Delete(32);
         }
 
         private static void BuildConfiguration()
