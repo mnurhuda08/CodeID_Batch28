@@ -16,9 +16,9 @@ namespace WeeklyTestDapperDbContext
             var dapperDbContext = new DapperDbContext(connection: Configuration.GetConnectionString("NorthwindDS"));
 
             //Supplier
-            Console.WriteLine("\nFind All Supplier ");
-            Console.WriteLine("========================================\n");
             IRepositoryBase<Supplier> supplierRepository = new SupplierRepositories(dapperDbContext);
+            Console.WriteLine("\nFind All Suppliers ");
+            Console.WriteLine("========================================\n");
             var suppliers = supplierRepository.FindAll();
             foreach (var supplier in suppliers)
             {
@@ -50,9 +50,12 @@ namespace WeeklyTestDapperDbContext
                 ContactName = "Peter Tugi"
             };
             var updateSupp = supplierRepository.Update(updateSupplierData);
+            var updatedSuppData = supplierRepository.FindByID(updateSupp.SupplierID);
+            Console.WriteLine($"{updatedSuppData}");
 
             Console.WriteLine("\nDelete Supplier ");
             Console.WriteLine("========================================\n");
+            supplierRepository.Delete(13);
         }
 
         private static void BuildConfiguration()

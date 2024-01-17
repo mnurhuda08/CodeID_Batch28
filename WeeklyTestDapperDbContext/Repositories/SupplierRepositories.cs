@@ -90,13 +90,13 @@ namespace WeeklyTestDapperDbContext.Repositories
             };
 
             IEnumerator<Supplier> dataSet = _dapperDbContext.ExecuteReader<Supplier>("SELECT SupplierID, CompanyName, ContactName, Phone FROM Suppliers");
-            _dapperDbContext.Dispose();
 
             while (dataSet.MoveNext())
             {
                 var supplier = dataSet.Current;
                 yield return supplier;
             }
+            _dapperDbContext.Dispose();
         }
 
         public override Supplier FindByID(int id)
