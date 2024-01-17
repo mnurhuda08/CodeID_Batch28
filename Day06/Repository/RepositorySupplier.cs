@@ -1,4 +1,4 @@
-﻿using Day06.AdoDb;
+﻿/*using Day06.AdoDb;
 using Day06.Entity;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Day06.Repository
 {
-    /*public class RepositorySupplier : IRepository<Suppliers>*/
+    *//*public class RepositorySupplier : IRepository<Suppliers>*//*
 
     public class RepositorySupplier
     {
@@ -228,4 +228,4 @@ namespace Day06.Repository
             return suppliers;
         }
     }
-}
+}*/

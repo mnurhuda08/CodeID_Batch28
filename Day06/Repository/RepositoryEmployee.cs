@@ -1,4 +1,4 @@
-﻿using Day06.AdoDb;
+﻿/*using Day06.AdoDb;
 using Day06.Entity;
 using System;
 using System.Collections.Generic;
@@ -136,15 +136,16 @@ namespace Day06.Repository
             _adoContext.Dispose();
         }
 
-        public IEnumerable<Employees> FindAllEnumerable()
+        public IEnumerable<Employees> FindAllEnumerable<Employees>()
         {
             SqlCommandModel model = new SqlCommandModel
             {
                 CommandText = "SElECT FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
                 CommandType = CommandType.Text,
+                CommandParameters = new SqlCommandParameterModel[] { }
             };
 
-            IEnumerator<Employees> dataSet = _adoContext.ExecuteReader<Employees>(model.CommandText);
+            IEnumerator<Employees> dataSet = _adoContext.ExecuteReader<Employees>(model);
 
             _adoContext.Dispose();
 
@@ -155,28 +156,28 @@ namespace Day06.Repository
             }
         }
 
-        public async Task<IEnumerable<Employees>> FindAllTaskEnumerableAsync()
-        {
-            SqlCommandModel model = new SqlCommandModel
-            {
-                CommandText = "SELECT EmployeeID, FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
-                CommandType = CommandType.Text,
-                CommandParameters = new SqlCommandParameterModel[] { }
-            };
-            IAsyncEnumerator<Employees> dataSet = _adoContext.ExecuteReaderAsync<Employees>(model);
+        *//*   public async Task<IEnumerable<Employees>> FindAllTaskEnumerableAsync()
+           {
+               SqlCommandModel model = new SqlCommandModel
+               {
+                   CommandText = "SELECT EmployeeID, FirstName, LastName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, PhotoPath FROM Employees",
+                   CommandType = CommandType.Text,
+                   CommandParameters = new SqlCommandParameterModel[] { }
+               };
+               IAsyncEnumerator<Employees> dataSet = _adoContext.ExecuteReaderAsync<Employees>(model);
 
-            var employees = new List<Employees>();
+               var employees = new List<Employees>();
 
-            while (await dataSet.MoveNextAsync())
-            {
-                employees.Add(dataSet.Current);
-            }
-            _adoContext.Dispose();
+               while (await dataSet.MoveNextAsync())
+               {
+                   employees.Add(dataSet.Current);
+               }
+               _adoContext.Dispose();
 
-            return employees;
-        }
+               return employees;
+           }*//*
 
-        public IEnumerator<Employees> FindAllEnumerator()
+        public IEnumerator<Employees> FindAllEnumerator<Employees>()
         {
             SqlCommandModel model = new SqlCommandModel
             {
@@ -278,7 +279,7 @@ namespace Day06.Repository
             return employees;
         }
 
-        async IAsyncEnumerable<Employees> IRepository<Employees>.FindAllEnumerableAsync()
+        async IAsyncEnumerable<Employees> IRepository<Employees>.FindAllEnumerableAsync<Employees>()
         {
             SqlCommandModel model = new SqlCommandModel
             {
@@ -288,7 +289,7 @@ namespace Day06.Repository
             };
             IAsyncEnumerator<Employees> dataSet = _adoContext.ExecuteReaderAsync<Employees>(model);
 
-            /*var employees = new List<Employees>();*/
+            *//*var employees = new List<Employees>();*//*
 
             while (await dataSet.MoveNextAsync())
             {
@@ -298,4 +299,4 @@ namespace Day06.Repository
             _adoContext.Dispose();
         }
     }
-}
+}*/

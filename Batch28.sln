@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day02", "Day02\Day02.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day05", "Day05\Day05.csproj", "{A44ABD18-8BDF-4470-9526-D9C70C1DFCBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day06", "Day06\Day06.csproj", "{BBBACE05-928C-4316-9CFD-7879D0CB909B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day06", "Day06\Day06.csproj", "{BBBACE05-928C-4316-9CFD-7879D0CB909B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeeklyTest", "WeeklyTest", "{29A1AC26-DE1C-4912-83CE-550068952ECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeeklyTestDapperDbContext", "WeeklyTestDapperDbContext\WeeklyTestDapperDbContext.csproj", "{2CC7CD09-A252-463C-AAC8-DB6AF15BE151}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +49,16 @@ Global
 		{BBBACE05-928C-4316-9CFD-7879D0CB909B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBBACE05-928C-4316-9CFD-7879D0CB909B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBBACE05-928C-4316-9CFD-7879D0CB909B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CC7CD09-A252-463C-AAC8-DB6AF15BE151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC7CD09-A252-463C-AAC8-DB6AF15BE151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC7CD09-A252-463C-AAC8-DB6AF15BE151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC7CD09-A252-463C-AAC8-DB6AF15BE151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2CC7CD09-A252-463C-AAC8-DB6AF15BE151} = {29A1AC26-DE1C-4912-83CE-550068952ECE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {021B8C57-28FA-4E3F-8186-686778089AF0}

@@ -1,8 +1,11 @@
 ﻿using Day06.AdoDb;
 using Day06.Entity;
+using Day06.Repositories;
 using Day06.Repository;
+using Day06.Repository.Contract;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using CustomerRepository = Day06.Repositories.CustomerRepository;
 
 namespace Day06
 {
@@ -16,23 +19,71 @@ namespace Day06
             var adoDbContext = new AdoDbContext(Configuration.GetConnectionString("NorthWindDS"));
 
             //Employee
-            IRepository<Employees> repositoryDBEmployee = new RepositoryEmployee(adoDbContext);
-            var employeesTaskAync = await repositoryDBEmployee.FindAllTaskEnumerableAsync();
+            IRepositoryBase<Employees> employeeRepository = new EmployeeRepository(adoDbContext);
+            var employees = employeeRepository.FindAll();
+            Console.WriteLine("\nFind All Employee ");
+            Console.WriteLine("========================================\n");
+            foreach (var employee in employees)
+            {
+                Console.WriteLine($"{employee}");
+            }
+
+            var employeeByID = employeeRepository.FindByID(6);
+            Console.WriteLine("\nFind By ID Employee");
+            Console.WriteLine("========================================\n");
+
+            Console.WriteLine(employeeByID);
+
+            Console.WriteLine($"\nCreate Employee");
+            Console.WriteLine("========================================\n");
+            //5. createEmployee, EmployeeId ga diisi, otomatis dari sequence database
+            /*Employees employee1 = new Employees(1, "123 Main St", "Anytown", "CA", "!234", "USA", 10, "John", "Doe", "Sales Manager", "Mr.", new DateTime(1980, 1, 1), new DateTime(2015, 3, 1), "555-1234", "1234", "Lorem Ipsum Dolor Sit Amet", 5, "john_doe.png");
+            employeeRepository.Insert(employee1);
+            Console.WriteLine(employee1.ToString());
+*/
+            //6. Update Employee
+            /*          Console.WriteLine($"\nUpdate Employee");
+                      Console.WriteLine("========================================\n");
+
+                      var findUpdateEmps = new Employees(9, "Ardi", "Wanis");
+
+                      employeeRepository.Edit(findUpdateEmps);
+                      Console.WriteLine(findUpdateEmps.ToString());
+                      var updateCustomerByID = employeeRepository.FindById(findUpdateEmps.EmployeeID);
+
+                      Console.WriteLine("\nUpdated By ID Customer");
+                      Console.WriteLine("========================================\n");
+                      Console.WriteLine(updateCustomerByID);
+          */
+            //7. delete employee by id 10
+            /* employeeRepository.Remove(54);*/
+
+            /*IRepository<Employees> repositoryDBEmployee = new RepositoryEmployee(adoDbContext);*/
+            /*var employeesTaskAync = await repositoryDBEmployee.FindAllTaskEnumerableAsync();
             Console.WriteLine("\n\nTask IEnumerable Async interface Employee");
             Console.WriteLine("========================================\n");
             foreach (var employee in employeesTaskAync)
             {
                 Console.WriteLine($"{employee}");
-            }
+            }*/
 
-            var employeesAync = repositoryDBEmployee.FindAllEnumerableAsync();
+            /*var employeesAync = repositoryDBEmployee.FindAllEnumerableAsync<Employees>();
             Console.WriteLine("\n\nIEnumerable Async interface Employee");
             Console.WriteLine("========================================\n");
             await foreach (var employee in employeesAync)
             {
                 Console.WriteLine($"{employee}");
-            }
+            }*/
 
+            //EmployeeReposiotry
+            /*IRepositoryBase<Employees> employeeDBRepository = new EmployeeRepository(adoDbContext);
+            var employees = employeeDBRepository.FindAll<Employees>();
+            Console.WriteLine("\n\nIEnumerable interface IRepositoryBase");
+            Console.WriteLine("========================================\n");
+            foreach (var employee in employees)
+            {
+                Console.WriteLine($"{employee}");
+            }*/
             /* //Ienumerator interface
              var employees = repositoryDBEmployee.FindAllEnumerator();
              Console.WriteLine("IEnumerator interface Employee\n");

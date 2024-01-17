@@ -1,4 +1,4 @@
-﻿using Day06.AdoDb;
+﻿/*using Day06.AdoDb;
 using Day06.Entity;
 using System;
 using System.Collections.Generic;
@@ -9,15 +9,10 @@ using System.Threading.Tasks;
 
 namespace Day06.Repository
 {
-    /*internal class RepositoryCustomer : IRepository<Customers>*/
-
-    internal class RepositoryCustomer
+    internal class RepositoryCustomer : RepositoryBase, IRepository<Customers>
     {
-        private readonly AdoDbContext _adoContext;
-
-        public RepositoryCustomer(AdoDbContext adoDbContext)
+        public RepositoryCustomer(AdoDbContext adoDbContext) : base(adoDbContext)
         {
-            _adoContext = adoDbContext;
         }
 
         public Customers Create(ref Customers customers)
@@ -85,8 +80,8 @@ namespace Day06.Repository
                     },
                 }
             };
-            _adoContext.ExecuteNonQuery(model);
-            _adoContext.Dispose();
+            _adoDbContext.ExecuteNonQuery(model);
+            _adoDbContext.Dispose();
             return customers;
         }
 
@@ -107,11 +102,11 @@ namespace Day06.Repository
                 }
             };
 
-            _adoContext.ExecuteNonQuery(model);
-            _adoContext.Dispose();
+            _adoDbContext.ExecuteNonQuery(model);
+            _adoDbContext.Dispose();
         }
 
-        public IEnumerable<Customers> FindAllEnumerable()
+        public IEnumerable<Customers> FindAllEnumerable<Employees>()
         {
             SqlCommandModel model = new SqlCommandModel
             {
@@ -119,9 +114,9 @@ namespace Day06.Repository
                 CommandType = CommandType.Text,
             };
 
-            IEnumerator<Customers> dataSet = _adoContext.ExecuteReader<Customers>(model.CommandText);
+            IEnumerator<Customers> dataSet = _adoDbContext.ExecuteReader<Customers>(model.CommandText);
 
-            _adoContext.Dispose();
+            _adoDbContext.Dispose();
 
             while (dataSet.MoveNext())
             {
@@ -130,7 +125,12 @@ namespace Day06.Repository
             }
         }
 
-        public IEnumerator<Customers> FindAllEnumerator()
+        public IAsyncEnumerable<Customers> FindAllEnumerableAsync<Employees>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<Customers> FindAllEnumerator<Employees>()
         {
             SqlCommandModel model = new SqlCommandModel
             {
@@ -138,10 +138,15 @@ namespace Day06.Repository
                 CommandType = CommandType.Text,
             };
 
-            IEnumerator<Customers> dataSet = _adoContext.ExecuteReader<Customers>(model.CommandText);
-            _adoContext.Dispose();
+            IEnumerator<Customers> dataSet = _adoDbContext.ExecuteReader<Customers>(model.CommandText);
+            _adoDbContext.Dispose();
 
             return dataSet;
+        }
+
+        public Task<IEnumerable<Customers>> FindAllTaskEnumerableAsync<Employees>()
+        {
+            throw new NotImplementedException();
         }
 
         public Customers FindByID(object id)
@@ -160,7 +165,7 @@ namespace Day06.Repository
                 }
             };
 
-            IEnumerator<Customers> dataSet = _adoContext.ExecuteReader<Customers>(model);
+            IEnumerator<Customers> dataSet = _adoDbContext.ExecuteReader<Customers>(model);
 
             var customer = new Customers();
 
@@ -169,7 +174,7 @@ namespace Day06.Repository
                 customer = dataSet.Current;
             }
 
-            _adoContext.Dispose();
+            _adoDbContext.Dispose();
             return customer;
         }
 
@@ -189,7 +194,7 @@ namespace Day06.Repository
                 }
             };
 
-            var dataSet = _adoContext.ExecuteReader<Customers>(model);
+            var dataSet = _adoDbContext.ExecuteReader<Customers>(model);
 
             while (dataSet.MoveNext())
             {
@@ -197,7 +202,7 @@ namespace Day06.Repository
                 yield return customer;
             }
 
-            _adoContext.Dispose();
+            _adoDbContext.Dispose();
         }
 
         public Customers Update(Customers customers)
@@ -220,9 +225,9 @@ namespace Day06.Repository
                 }
             };
 
-            _adoContext.ExecuteNonQuery(model);
-            _adoContext.Dispose();
+            _adoDbContext.ExecuteNonQuery(model);
+            _adoDbContext.Dispose();
             return customers;
         }
     }
-}
+}*/

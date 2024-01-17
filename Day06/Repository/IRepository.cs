@@ -9,13 +9,13 @@ namespace Day06.Repository
 {
     internal interface IRepository<T>
     {
-        IEnumerator<T> FindAllEnumerator();
+        IEnumerator<T> FindAllEnumerator<T>();
 
-        IEnumerable<T> FindAllEnumerable();
+        IEnumerable<T> FindAllEnumerable<T>();
 
-        Task<IEnumerable<T>> FindAllTaskEnumerableAsync(); // alternate
+        //Task<IEnumerable<T>> FindAllTaskEnumerableAsync<T>(); // alternate
 
-        IAsyncEnumerable<T> FindAllEnumerableAsync();
+        IAsyncEnumerable<T> FindAllEnumerableAsync<T>();
 
         T FindByID(object id);
 
