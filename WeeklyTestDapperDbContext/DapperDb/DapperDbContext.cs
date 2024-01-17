@@ -62,12 +62,12 @@ namespace WeeklyTestDapperDbContext.DapperDb
                 _dbConnection.Query(
                 model.CommandText,
                 parameters,
-                commandType: CommandType.StoredProcedure
+                commandType: CommandType.Text
             );
             }
-            finally
+            catch (Exception ex)
             {
-                _dbConnection.Close();
+                Console.WriteLine($"Error executing non-query: {ex.Message}");
             }
         }
 

@@ -20,7 +20,7 @@ namespace WeeklyTestDapperDbContext.Repositories
         {
             SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = "INSERT INTO Supplier (CompanyName, ContactName, ContactTitle, Phone) VALUES (@companyName,@contactName,@contactTitle,@phone);",
+                CommandText = "INSERT INTO Suppliers (CompanyName, ContactName, ContactTitle, Phone) VALUES (@companyName, @contactName, @contactTitle, @phone)",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[]
                 {
@@ -56,6 +56,7 @@ namespace WeeklyTestDapperDbContext.Repositories
                     }
                 }
             };
+
             _dapperDbContext.ExecuteNonQuery(model);
             _dapperDbContext.Dispose();
             return entity;
@@ -84,12 +85,12 @@ namespace WeeklyTestDapperDbContext.Repositories
         {
             SqlCommandModel model = new SqlCommandModel
             {
-                CommandText = $"SELECT SupplierID, CompanyName, ContactName, Phone FROM Suppliers;",
+                CommandText = $"\"SELECT SupplierID, CompanyName, ContactName, Phone FROM Suppliers;\"",
                 CommandType = CommandType.Text,
                 CommandParameters = new SqlCommandParameterModel[] { }
             };
 
-            IEnumerator<Supplier> dataSet = _dapperDbContext.ExecuteReader<Supplier>("SELECT SupplierID, CompanyName, ContactName, Phone FROM Suppliers");
+            IEnumerator<Supplier> dataSet = _dapperDbContext.ExecuteReader<Supplier>("SELECT SupplierID, CompanyName, ContactName, Phone FROM Suppliers;");
 
             while (dataSet.MoveNext())
             {
