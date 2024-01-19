@@ -109,20 +109,13 @@ namespace EFCoreConsole
                 db.Update(person);
                 db.SaveChanges();
                 Console.WriteLine($"Update Person");
-                Console.WriteLine($"Bussenis Entity ID: {findPerson.BusinessEntityId}");
-                Console.WriteLine($"Full Name: {findPerson.FirstName} {findPerson.MiddleName} {findPerson.LastName}");
+                Console.WriteLine($"Bussenis Entity ID: {foundPerson.BusinessEntityId}");
+                Console.WriteLine($"Full Name: {foundPerson.FirstName} {foundPerson.MiddleName} {foundPerson.LastName}");
 
                 //delete Person
                 Console.WriteLine($"Delete Person");
-                db.People.Remove(findPerson);
+                db.People.Remove(foundPerson);
                 db.SaveChanges();
-            }
-        }
-
-        private static void UpdatePerson()
-        {
-            using (var db = new AdventureWorks2019Context(_optionBuilder.Options))
-            {
             }
         }
     }
