@@ -17,7 +17,7 @@ namespace EFCoreConsole
             BuildOptions();
             ListPersons();
             InsertPerson();
-            /*GetPersonByFirstName();*/
+            GetPersonByFirstName();
         }
 
         private static void BuildConfiguration()
@@ -50,22 +50,22 @@ namespace EFCoreConsole
             }
         }
 
-        /*private static void GetPersonByFirstName()
+        private static void GetPersonByFirstName()
+        {
+            using (var db = new AdventureWorks2019Context(_optionBuilder.Options))
+            {
+                var person = db.People.FirstOrDefault(p => p.FirstName == "Echo");
+                if (person != null)
                 {
-                    using (var db = new AdventureWorks2019Context(_optionBuilder.Options))
-                    {
-                        var person = db.People.FirstOrDefault(p => p.FirstName == "Echo");
-                        if (person != null)
-                        {
-                            Console.WriteLine("Single Person:");
-                            Console.WriteLine($"Full Name: {person.FirstName} {person.MiddleName} {person.LastName}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Person with FirstName 'Ken' not found.");
-                        }
-                    }
-                }*/
+                    Console.WriteLine("Single Person:");
+                    Console.WriteLine($"Full Name: {person.FirstName} {person.MiddleName} {person.LastName}");
+                }
+                else
+                {
+                    Console.WriteLine("Person with FirstName 'Ken' not found.");
+                }
+            }
+        }
 
         private static void InsertPerson()
         {
