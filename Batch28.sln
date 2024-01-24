@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day04", "..\Day04\Day04.csproj", "{BA023714-5ACB-46C5-8E06-98CA6908EEED}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day03", "..\Day03\Day03.csproj", "{64C25912-4507-4CF3-B29B-857563A000B8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day01", "Day01\Day01.csproj", "{C0E83DA7-4FB2-4C72-9F95-31A327267212}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day02", "Day02\Day02.csproj", "{A15B4CE8-34BD-4F7C-AFB4-B0300A217882}"
@@ -19,11 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeeklyTest", "WeeklyTest", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeeklyTestDapperDbContext", "WeeklyTestDapperDbContext\WeeklyTestDapperDbContext.csproj", "{2CC7CD09-A252-463C-AAC8-DB6AF15BE151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreConsole", "EFCoreConsole\EFCoreConsole.csproj", "{65A2CF3B-D158-495D-95CC-A9F5030B06A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreConsole", "EFCoreConsole\EFCoreConsole.csproj", "{65A2CF3B-D158-495D-95CC-A9F5030B06A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreLibrary", "EFCoreLibrary\EFCoreLibrary.csproj", "{2162F64F-24D8-4B61-A4A5-15FBAFCC0DA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreLibrary", "EFCoreLibrary\EFCoreLibrary.csproj", "{2162F64F-24D8-4B61-A4A5-15FBAFCC0DA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramewrok", "EntityFramewrok", "{5DFF45D9-508A-43C0-80ED-A8B05A6B5E28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Day07", "Day07", "{CE10DC31-CAE0-4E2D-B96A-5D9DCCDC12D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore_AdventureWorks2019Db", "EFCore_AdventureWorks2019Db\EFCore_AdventureWorks2019Db.csproj", "{B0930EDB-6E38-482A-97BA-7E80E36BFA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore_AdventureWorks2019App", "EFCore_AdventureWorks2019App\EFCore_AdventureWorks2019App.csproj", "{3907715E-C6EF-45F3-B622-B3691CC4E3AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BA023714-5ACB-46C5-8E06-98CA6908EEED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA023714-5ACB-46C5-8E06-98CA6908EEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA023714-5ACB-46C5-8E06-98CA6908EEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA023714-5ACB-46C5-8E06-98CA6908EEED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64C25912-4507-4CF3-B29B-857563A000B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64C25912-4507-4CF3-B29B-857563A000B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64C25912-4507-4CF3-B29B-857563A000B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64C25912-4507-4CF3-B29B-857563A000B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C0E83DA7-4FB2-4C72-9F95-31A327267212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0E83DA7-4FB2-4C72-9F95-31A327267212}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0E83DA7-4FB2-4C72-9F95-31A327267212}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,6 +61,14 @@ Global
 		{2162F64F-24D8-4B61-A4A5-15FBAFCC0DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2162F64F-24D8-4B61-A4A5-15FBAFCC0DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2162F64F-24D8-4B61-A4A5-15FBAFCC0DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0930EDB-6E38-482A-97BA-7E80E36BFA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0930EDB-6E38-482A-97BA-7E80E36BFA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0930EDB-6E38-482A-97BA-7E80E36BFA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0930EDB-6E38-482A-97BA-7E80E36BFA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3907715E-C6EF-45F3-B622-B3691CC4E3AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3907715E-C6EF-45F3-B622-B3691CC4E3AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3907715E-C6EF-45F3-B622-B3691CC4E3AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3907715E-C6EF-45F3-B622-B3691CC4E3AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +77,8 @@ Global
 		{2CC7CD09-A252-463C-AAC8-DB6AF15BE151} = {29A1AC26-DE1C-4912-83CE-550068952ECE}
 		{65A2CF3B-D158-495D-95CC-A9F5030B06A4} = {5DFF45D9-508A-43C0-80ED-A8B05A6B5E28}
 		{2162F64F-24D8-4B61-A4A5-15FBAFCC0DA2} = {5DFF45D9-508A-43C0-80ED-A8B05A6B5E28}
+		{B0930EDB-6E38-482A-97BA-7E80E36BFA5C} = {CE10DC31-CAE0-4E2D-B96A-5D9DCCDC12D2}
+		{3907715E-C6EF-45F3-B622-B3691CC4E3AC} = {CE10DC31-CAE0-4E2D-B96A-5D9DCCDC12D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {021B8C57-28FA-4E3F-8186-686778089AF0}
